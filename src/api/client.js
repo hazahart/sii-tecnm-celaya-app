@@ -1,11 +1,13 @@
 import axios from 'axios'
 import { getToken, removeToken } from './storage'
 
+const baseURL = import.meta.env.DEV
+    ? '/api'
+    : import.meta.env.VITE_API_BASE_URL
+
 const api = axios.create({
-    baseURL: import.meta.env.VITE_API_BASE_URL,
-    headers: {
-        'Content-Type': 'application/json',
-    },
+    baseURL,
+    headers: { 'Content-Type': 'application/json' },
 })
 
 api.interceptors.request.use(
