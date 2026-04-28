@@ -26,3 +26,7 @@ dist-ssr
 # Caches
 .eslintcache
 *.tsbuildinfo
+
+# local env files
+*.local
+.env
