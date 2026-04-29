@@ -171,3 +171,24 @@ Base URL: `https://sii.celaya.tecnm.mx/api`
 | GET | `/api/movil/estudiante/calificaciones` | Calificaciones del semestre       |
 | GET | `/api/movil/estudiante/kardex` | Historial académico               |
 | GET | `/api/movil/estudiante/horarios` | Horario del estudiante            |
+
+## Capturas
+
+### Login
+![Login](assets/Login.png)
+
+### Dashboard
+![Dashboard 1](assets/Dashboard1.png)
+![Dashboard 2](assets/Dashboard2.png)
+
+### Calificaciones
+![Calificaciones](assets/Calificaciones.png)
+
+### Kardex
+![Kardex](assets/Kardex.png)
+
+### Horario
+![Horario](assets/Horario.png)
+
+### Simulador
+![Simulador](assets/Simulador.png)
