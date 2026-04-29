@@ -1,9 +1,7 @@
 import axios from 'axios'
 import { getToken, removeToken } from './storage'
 
-const baseURL = import.meta.env.DEV
-    ? '/api'
-    : import.meta.env.VITE_API_BASE_URL
+const baseURL = '/api'
 
 const api = axios.create({
     baseURL,
