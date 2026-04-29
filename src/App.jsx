@@ -6,11 +6,16 @@ import Dashboard from './pages/Dashboard'
 import Kardex from './pages/Kardex'
 import Horario from './pages/Horario'
 import Calificaciones from './pages/Calificaciones'
+import Admin from './pages/Admin'
+import AdminLogin from './pages/AdminLogin'
+import AdminRoute from './components/AdminRoute'
+import Simulador from "./pages/Simulador.jsx";
 
 function App() {
     return (
         <Routes>
             <Route path="/login" element={<Login />} />
+            <Route path="/admin/login" element={<AdminLogin />} />
 
             <Route path="/dashboard" element={
                 <ProtectedRoute>
@@ -37,6 +42,18 @@ function App() {
                 <ProtectedRoute>
                     <Layout>
                         <Calificaciones />
+                    </Layout>
+                </ProtectedRoute>
+            } />
+            <Route path="/admin" element={
+                <AdminRoute>
+                    <Admin />
+                </AdminRoute>
+            } />
+            <Route path="/simulador" element={
+                <ProtectedRoute>
+                    <Layout>
+                        <Simulador />
                     </Layout>
                 </ProtectedRoute>
             } />

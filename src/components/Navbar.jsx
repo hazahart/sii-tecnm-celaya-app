@@ -16,7 +16,7 @@ export default function Navbar() {
                 const data = res.data ?? res
                 setNumeroControl(data.numero_control || '')
             })
-            .catch(() => {})
+            .catch(() => { })
     }, [])
 
     useEffect(() => {
@@ -32,6 +32,7 @@ export default function Navbar() {
         { label: 'Calificaciones', path: '/calificaciones' },
         { label: 'Kardex', path: '/kardex' },
         { label: 'Horario', path: '/horario' },
+        { label: 'Simulador', path: '/simulador' }
     ]
 
     return (
@@ -50,9 +51,9 @@ export default function Navbar() {
                 {nav.map(({ label, path }) => {
                     const isActive = location.pathname === path
                     return (
-                        <button 
-                            key={label} 
-                            className={`sii-header__link ${isActive ? 'sii-header__link--active' : ''}`} 
+                        <button
+                            key={label}
+                            className={`sii-header__link ${isActive ? 'sii-header__link--active' : ''}`}
                             onClick={() => navigate(path)}
                         >
                             {label}
@@ -63,8 +64,8 @@ export default function Navbar() {
 
             <div className="sii-header__right">
                 <span className="sii-header__ctrl">{numeroControl}</span>
-                
-                <button 
+
+                <button
                     className="sii-mobile-toggle"
                     onClick={() => setMenuOpen(!menuOpen)}
                 >
@@ -87,9 +88,9 @@ export default function Navbar() {
                 <button className="sii-header__logout" onClick={handleLogout} title="Cerrar sesión">
                     <span className="sii-logout-text">Cerrar sesión</span>
                     <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
-                        <path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"/>
-                        <polyline points="16 17 21 12 16 7"/>
-                        <line x1="21" y1="12" x2="9" y2="12"/>
+                        <path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4" />
+                        <polyline points="16 17 21 12 16 7" />
+                        <line x1="21" y1="12" x2="9" y2="12" />
                     </svg>
                 </button>
             </div>
@@ -99,9 +100,9 @@ export default function Navbar() {
                     {nav.map(({ label, path }) => {
                         const isActive = location.pathname === path
                         return (
-                            <button 
-                                key={label} 
-                                className={`sii-mobile-link ${isActive ? 'sii-mobile-link--active' : ''}`} 
+                            <button
+                                key={label}
+                                className={`sii-mobile-link ${isActive ? 'sii-mobile-link--active' : ''}`}
                                 onClick={() => navigate(path)}
                             >
                                 {label}
