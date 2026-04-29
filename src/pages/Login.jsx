@@ -1,111 +1,95 @@
 import { useState } from 'react'
-import { Navigate, useNavigate } from 'react-router-dom'
+import { useNavigate } from 'react-router-dom'
 import { useAuth } from '../context/AuthContext'
+import logoTecnm from '../assets/logo.png'
 
 export default function Login() {
-    // Hooks: traemos lo que necesitamos del contexto y del router
-    const { login, loading, isAuth } = useAuth()
-    const navigate = useNavigate()
-
-    // Estado local del formulario
     const [email, setEmail] = useState('')
     const [password, setPassword] = useState('')
     const [error, setError] = useState(null)
-
-    // Si el usuario ya está autenticado, lo mandamos al dashboard
-    // (evita que vuelva al login estando logueado)
-    if (isAuth) {
-        return <Navigate to="/dashboard" replace />
-    }
+    const { login, loading } = useAuth()
+    const navigate = useNavigate()
 
     const handleSubmit = async (e) => {
         e.preventDefault()
         setError(null)
 
-        if (!email.trim() || !password.trim()) {
-            setError('Por favor llena todos los campos.')
+        if (!email || !password) {
+            setError('Por favor, ingresa todos los campos.')
             return
         }
 
-        const result = await login(email.trim(), password)
-
-        if (result.ok) {
-            navigate('/dashboard')
+        const res = await login(email, password)
+        if (res.ok) {
+            navigate('/dashboard', { replace: true })
         } else {
-            setError(result.message)
+            setError(res.message)
         }
     }
 
     return (
-        <div className="min-h-screen bg-gradient-to-br from-blue-600 to-indigo-800 flex items-center justify-center p-4">
-            <div className="bg-white rounded-2xl shadow-2xl w-full max-w-md p-8">
-
-                <div className="text-center mb-8">
-                    <div className="w-16 h-16 bg-blue-600 rounded-2xl mx-auto flex items-center justify-center text-white text-2xl font-bold mb-4">
-                        ITC
-                    </div>
-                    <h1 className="text-2xl font-bold text-slate-800">SII ITC</h1>
-                    <p className="text-sm text-slate-500 mt-1">
-                        Inicia sesión con tu cuenta institucional
-                    </p>
+        <div className="sii-login-wrap">
+            <div className="sii-login-card">
+                <div className="sii-login-brand">
+                    <img src={logoTecnm} alt="Logo Institucional" className="sii-login-logo" />
+                    <h1 className="sii-login-title">SII<span>ITC</span></h1>
+                    <p className="sii-login-sub">Sistema de Información Institucional</p>
                 </div>
-                <form onSubmit={handleSubmit} className="space-y-4">
-                    <div>
-                        <label className="block text-sm font-medium text-slate-700 mb-1">
-                            Correo institucional
-                        </label>
-                        <input
-                            type="email"
-                            value={email}
-                            onChange={(e) => setEmail(e.target.value)}
-                            placeholder="numerodecontrol@celaya.tecnm.mx"
-                            className="w-full px-4 py-2.5 border border-slate-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
-                            autoComplete="email"
-                            disabled={loading}
-                        />
-                    </div>
 
-                    <div>
-                        <label className="block text-sm font-medium text-slate-700 mb-1">
-                            Contraseña
-                        </label>
-                        <input
-                            type="password"
-                            value={password}
-                            onChange={(e) => setPassword(e.target.value)}
-                            placeholder="••••••••"
-                            className="w-full px-4 py-2.5 border border-slate-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
-                            autoComplete="current-password"
-                            disabled={loading}
-                        />
-                    </div>
-
-
+                <form className="sii-login-form" onSubmit={handleSubmit}>
                     {error && (
-                        <div className="bg-red-50 border border-red-200 text-red-700 text-sm rounded-lg p-3">
-                            {error}
+                        <div className="sii-login-error">
+                            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
+                                <circle cx="12" cy="12" r="10"></circle>
+                                <line x1="12" y1="8" x2="12" y2="12"></line>
+                                <line x1="12" y1="16" x2="12.01" y2="16"></line>
+                            </svg>
+                            <span>{error}</span>
                         </div>
                     )}
 
-                    <button
-                        type="submit"
+                    <div className="sii-input-group">
+                        <label className="sii-label" htmlFor="email">Correo Institucional</label>
+                        <input
+                            id="email"
+                            className="sii-input"
+                            type="email"
+                            placeholder="ejemplo@celaya.tecnm.mx"
+                            value={email}
+                            onChange={(e) => setEmail(e.target.value)}
+                            disabled={loading}
+                        />
+                    </div>
+
+                    <div className="sii-input-group">
+                        <label className="sii-label" htmlFor="password">Contraseña</label>
+                        <input
+                            id="password"
+                            className="sii-input"
+                            type="password"
+                            placeholder="••••••••"
+                            value={password}
+                            onChange={(e) => setPassword(e.target.value)}
+                            disabled={loading}
+                        />
+                    </div>
+
+                    <button 
+                        type="submit" 
+                        className={`sii-btn sii-login-btn ${loading ? 'sii-btn--loading' : ''}`}
                         disabled={loading}
-                        className="w-full bg-blue-600 text-white font-medium py-2.5 rounded-lg hover:bg-blue-700 transition disabled:opacity-50 disabled:cursor-not-allowed flex items-center justify-center gap-2"
                     >
                         {loading ? (
-                            <>
-                                <span className="w-4 h-4 border-2 border-white border-t-transparent rounded-full animate-spin" />
-                                Verificando...
-                            </>
+                            <span className="sii-spinner"></span>
                         ) : (
-                            'Iniciar sesión'
+                            'Iniciar Sesión'
                         )}
                     </button>
                 </form>
 
-                <p className="text-xs text-slate-400 text-center mt-6">
-                    Tecnológico Nacional de México · Campus Celaya
-                </p>
+                <div className="sii-login-footer">
+                    Tecnológico Nacional de México<br/>Campus Celaya
+                </div>
             </div>
         </div>
     )
