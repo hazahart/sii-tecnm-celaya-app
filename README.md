@@ -10,7 +10,7 @@ Interfaz web para el Sistema de Información Institucional del TecNM Celaya. Per
 
 ---
 
-## 🛠Tecnologías
+## Tecnologías
 
 ### Frontend
 - React + Vite
