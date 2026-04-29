@@ -54,7 +54,7 @@ export default function Login() {
                             id="email"
                             className="sii-input"
                             type="email"
-                            placeholder="ejemplo@celaya.tecnm.mx"
+                            placeholder="l21030196@celaya.tecnm.mx"
                             value={email}
                             onChange={(e) => setEmail(e.target.value)}
                             disabled={loading}
