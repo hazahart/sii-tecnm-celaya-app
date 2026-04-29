@@ -1,5 +1,6 @@
 import { Routes, Route, Navigate } from 'react-router-dom'
 import ProtectedRoute from './components/ProtectedRoute'
+import Layout from './components/Layout'
 import Login from './pages/Login'
 import Dashboard from './pages/Dashboard'
 import Kardex from './pages/Kardex'
@@ -12,16 +13,33 @@ function App() {
             <Route path="/login" element={<Login />} />
 
             <Route path="/dashboard" element={
-                <ProtectedRoute><Dashboard /></ProtectedRoute>
+                <ProtectedRoute>
+                    <Layout>
+                        <Dashboard />
+                    </Layout>
+                </ProtectedRoute>
             } />
             <Route path="/kardex" element={
-                <ProtectedRoute><Kardex /></ProtectedRoute>
+                <ProtectedRoute>
+                    <Layout>
+                        <Kardex />
+                    </Layout>
+                </ProtectedRoute>
             } />
             <Route path="/horario" element={
-                <ProtectedRoute><Horario /></ProtectedRoute>
+                <ProtectedRoute>
+                    <Layout>
+                        <Horario />
+                    </Layout>
+                </ProtectedRoute>
             } />
             <Route path="/calificaciones" element={
-                <ProtectedRoute><Calificaciones /></ProtectedRoute>} />
+                <ProtectedRoute>
+                    <Layout>
+                        <Calificaciones />
+                    </Layout>
+                </ProtectedRoute>
+            } />
             <Route path="*" element={<Navigate to="/login" replace />} />
         </Routes>
     )
