@@ -4,6 +4,7 @@ import Login from './pages/Login'
 import Dashboard from './pages/Dashboard'
 import Kardex from './pages/Kardex'
 import Horario from './pages/Horario'
+import Calificaciones from './pages/Calificaciones'
 
 function App() {
     return (
@@ -19,7 +20,8 @@ function App() {
             <Route path="/horario" element={
                 <ProtectedRoute><Horario /></ProtectedRoute>
             } />
-
+            <Route path="/calificaciones" element={
+                <ProtectedRoute><Calificaciones /></ProtectedRoute>} />
             <Route path="*" element={<Navigate to="/login" replace />} />
         </Routes>
     )
