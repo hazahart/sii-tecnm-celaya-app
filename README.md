@@ -1,16 +1,24 @@
-# React + Vite
+# Examen del 3er parcial para la materia de Topicos avanzados de desarrollo web
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+## Integrantes del equipo
 
-Currently, two official plugins are available:
+- MORALES RAMIREZ MARIANO
+* RAMIREZ MIRELES GUSTAVO
++ PARRA HERNÁNDEZ ESTEBAN DE JESUS
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
+## Tecnologias usadas 
 
-## React Compiler
+### React + Vite
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+## Enlace al deploy de la aplicacion [poner aqui donde se realzo el deploy y el nombre de la aplicacion](aqui va el enlace)
 
-## Expanding the ESLint configuration
+## Funcionalidad adicional 
+describir la funcionalidad agregada
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+## Montaje de la aplicacion
+>[!NOTE]
+>Para poder montar la aplicacion tienes que ejecutar el comando **npm install** para que se instalen todas las librerias y dependencias que se requieren
+
+
+>[!WARNING]
+> Para que la funcione a su totalidad se tiene que crear el **.env** en la raiz, luego copiar lo que tiene el **.env.example** para que funcione
