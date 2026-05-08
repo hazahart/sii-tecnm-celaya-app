@@ -203,54 +203,56 @@ export default function Calificaciones() {
 
       {view === 'tabla' && filtered.length > 0 && (
         <div className="sii-panel" style={{ padding: 0, overflow: 'hidden' }}>
-          <table className="sii-table">
-            <thead>
-              <tr>
-                <th className="sii-th">Materia</th>
-                <th className="sii-th">Clave</th>
-                <th className="sii-th">Grupo</th>
-                <th className="sii-th sii-th--center">P1</th>
-                <th className="sii-th sii-th--center">P2</th>
-                <th className="sii-th sii-th--center">P3</th>
-                <th className="sii-th sii-th--center">P4</th>
-                <th className="sii-th sii-th--center">Promedio</th>
-                <th className="sii-th sii-th--center">Estado</th>
-              </tr>
-            </thead>
-            <tbody>
-              {filtered.map((m, i) => {
-                const mat = m.materia ?? {}
-                const califs = m.calificaiones ?? []
-                const promedio = calcPromedio(califs)
-                return (
-                  <tr key={i} className="sii-tr">
-                    <td className="sii-td sii-td--name">{mat.nombre_materia ?? '—'}</td>
-                    <td className="sii-td sii-td--muted">{mat.clave_materia ?? '—'}</td>
-                    <td className="sii-td sii-td--muted">{mat.letra_grupo ?? '—'}</td>
-                    {[1, 2, 3, 4].map(n => {
-                      const c = califs.find(c => c.numero_calificacion === n)
-                      return (
-                        <td key={n} className="sii-td sii-td--center">
-                          <GradeBadge value={c?.calificacion ?? null} />
-                        </td>
-                      )
-                    })}
-                    <td className="sii-td sii-td--center">
-                      <div style={{ display: 'flex', flexDirection: 'column', gap: 4, alignItems: 'center' }}>
-                        <GradeBadge value={promedio} />
-                        {promedio && <GradeBar value={promedio} />}
-                      </div>
-                    </td>
-                    <td className="sii-td sii-td--center">
-                      <span className={`sii-estado sii-estado--${gradeClass(promedio)}`}>
-                        {gradeLabel(promedio)}
-                      </span>
-                    </td>
-                  </tr>
-                )
-              })}
-            </tbody>
-          </table>
+          <div style={{ overflowX: 'auto', WebkitOverflowScrolling: 'touch' }}>
+            <table className="sii-table" style={{ minWidth: '640px' }}>
+              <thead>
+                <tr>
+                  <th className="sii-th">Materia</th>
+                  <th className="sii-th">Clave</th>
+                  <th className="sii-th">Grupo</th>
+                  <th className="sii-th sii-th--center">P1</th>
+                  <th className="sii-th sii-th--center">P2</th>
+                  <th className="sii-th sii-th--center">P3</th>
+                  <th className="sii-th sii-th--center">P4</th>
+                  <th className="sii-th sii-th--center">Promedio</th>
+                  <th className="sii-th sii-th--center">Estado</th>
+                </tr>
+              </thead>
+              <tbody>
+                {filtered.map((m, i) => {
+                  const mat = m.materia ?? {}
+                  const califs = m.calificaiones ?? []
+                  const promedio = calcPromedio(califs)
+                  return (
+                    <tr key={i} className="sii-tr">
+                      <td className="sii-td sii-td--name">{mat.nombre_materia ?? '—'}</td>
+                      <td className="sii-td sii-td--muted">{mat.clave_materia ?? '—'}</td>
+                      <td className="sii-td sii-td--muted">{mat.letra_grupo ?? '—'}</td>
+                      {[1, 2, 3, 4].map(n => {
+                        const c = califs.find(c => c.numero_calificacion === n)
+                        return (
+                          <td key={n} className="sii-td sii-td--center">
+                            <GradeBadge value={c?.calificacion ?? null} />
+                          </td>
+                        )
+                      })}
+                      <td className="sii-td sii-td--center">
+                        <div style={{ display: 'flex', flexDirection: 'column', gap: 4, alignItems: 'center' }}>
+                          <GradeBadge value={promedio} />
+                          {promedio && <GradeBar value={promedio} />}
+                        </div>
+                      </td>
+                      <td className="sii-td sii-td--center">
+                        <span className={`sii-estado sii-estado--${gradeClass(promedio)}`}>
+                          {gradeLabel(promedio)}
+                        </span>
+                      </td>
+                    </tr>
+                  )
+                })}
+              </tbody>
+            </table>
+          </div>
         </div>
       )}
 
